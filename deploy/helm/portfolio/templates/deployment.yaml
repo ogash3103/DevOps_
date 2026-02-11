@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: portfolio
+  labels:
+    app: portfolio
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -18,15 +20,3 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 80
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 10
-            periodSeconds: 20
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 10
