@@ -4,7 +4,7 @@
 This is a comprehensive DevOps portfolio website demonstrating modern DevOps practices including CI/CD, containerization, monitoring, and performance optimization.
 
 ## Author
-Portfolio Owner: [Your Name]
+Portfolio Owner: Ogabek
 
 ## Technology Stack
 - Frontend: HTML, CSS, JavaScript (Static Website)
@@ -43,10 +43,10 @@ devops-portfolio/
 5. Performance testing and optimization
 
 ## Live Website
-🌐 [Live Portfolio URL - Will be updated after deployment]
+🌐 [Live Portfolio](https://ogash3103.github.io/DevOps_Docker/)
 
 ## Docker Hub
-🐳 [Docker Hub Repository - Will be updated after containerization]
+🐳 [Docker Hub Repository](https://hub.docker.com/r/ogabek0331/devops-portfolio)
 
 ## Quick Start
 
@@ -61,10 +61,10 @@ devops-portfolio/
 ### Local Development
 ```bash
 # Clone the repository
-git clone https://github.com/[username]/devops-portfolio-[yourname].git
+git clone https://github.com/ogash3103/DevOps_Docker.git
 
 # Navigate to project directory
-cd devops-portfolio-[yourname]
+cd DevOps_Docker
 
 # Option 1: Open directly in browser
 open src/index.html
@@ -130,7 +130,7 @@ All report templates are available in the `docs/` folder:
 - Task 5: Performance Testing and Optimization (Final Report)
 
 ## Contact
-- Email: [Your Email]
-- LinkedIn: [Your LinkedIn]
-- GitHub: [Your GitHub]
-- Docker Hub: [Your Docker Hub]
+- Email: ogabek0331@gmail.com
+- LinkedIn: [linkedin.com/in/ogabek](https://linkedin.com/in/ogabek)
+- GitHub: [github.com/ogash3103](https://github.com/ogash3103)
+- Docker Hub: [hub.docker.com/u/ogabek0331](https://hub.docker.com/u/ogabek0331)

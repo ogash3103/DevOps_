@@ -1,12 +1,12 @@
 # DevOps Portfolio - Important Links
 
 ## Repository and Deployment
-GitHub Repository: https://github.com/[username]/devops-portfolio-[yourname]
-Live Website: https://[username].github.io/devops-portfolio-[yourname]/
-Docker Hub: https://hub.docker.com/r/[username]/devops-portfolio
+GitHub Repository: https://github.com/ogash3103/DevOps_Docker
+Live Website: https://ogash3103.github.io/DevOps_Docker/
+Docker Hub: https://hub.docker.com/r/ogabek0331/devops-portfolio
 
 ## CI/CD Pipeline
-GitHub Actions: https://github.com/[username]/devops-portfolio-[yourname]/actions
+GitHub Actions: https://github.com/ogash3103/DevOps_Docker/actions
 
 ## Video Demonstrations
 Video 1 - Monitoring and Analytics (2-3 min): [YouTube/Drive Link]
@@ -22,7 +22,6 @@ PageSpeed Insights: https://pagespeed.web.dev/
 GTmetrix: https://gtmetrix.com/
 
 ## Notes
-- Replace [username] with your actual GitHub/Docker Hub username
-- Replace [yourname] with your actual name
+- All links are now configured for ogash3103/DevOps_Docker repository
 - Update video links after uploading to YouTube or Google Drive
 - Ensure all links are publicly accessible before submission

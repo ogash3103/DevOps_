@@ -3,8 +3,8 @@
 FROM nginx:alpine
 
 # Set maintainer label
-LABEL maintainer="devops@example.com"
-LABEL description="DevOps Portfolio Website"
+LABEL maintainer="ogabek0331@gmail.com"
+LABEL description="DevOps Portfolio Website - Ogabek"
 
 # Remove default nginx website
 RUN rm -rf /usr/share/nginx/html/*
