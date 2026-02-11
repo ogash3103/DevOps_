@@ -1,0 +1,59 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devops-portfolio
+  namespace: argocd
+  # Finalizer ensures proper cleanup
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # Project name
+  project: default
+  
+  # Source repository configuration
+  source:
+    # GitHub repository URL
+    repoURL: https://github.com/ogash3103/DevOps_Docker.git
+    # Branch to track
+    targetRevision: main
+    # Path to Kubernetes manifests
+    path: k8s
+    
+  # Destination cluster and namespace
+  destination:
+    # Kubernetes cluster URL (in-cluster)
+    server: https://kubernetes.default.svc
+    # Target namespace
+    namespace: default
+  
+  # Sync policy configuration
+  syncPolicy:
+    # Automated sync configuration
+    automated:
+      # Automatically sync when changes detected
+      prune: true
+      # Automatically create namespace if not exists
+      selfHeal: true
+      # Allow empty resources
+      allowEmpty: false
+    
+    # Sync options
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    
+    # Retry configuration
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  
+  # Ignore differences in certain fields
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas

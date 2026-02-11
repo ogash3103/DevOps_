@@ -10,8 +10,10 @@ Portfolio Owner: Ogabek
 - Frontend: HTML, CSS, JavaScript (Static Website)
 - Version Control: Git & GitHub
 - CI/CD: GitHub Actions
+- GitOps: ArgoCD
 - Containerization: Docker
-- Hosting: GitHub Pages
+- Orchestration: Kubernetes
+- Hosting: GitHub Pages / Kubernetes
 - Monitoring: Google Analytics, UptimeRobot
 - Performance Testing: Google PageSpeed Insights, Lighthouse
 
@@ -39,8 +41,10 @@ devops-portfolio/
 1. Version Control with Git branching strategy
 2. Automated CI/CD pipeline with GitHub Actions
 3. Container-based deployment with Docker
-4. Real-time monitoring and analytics
-5. Performance testing and optimization
+4. GitOps with ArgoCD for Kubernetes deployments
+5. Real-time monitoring and analytics
+6. Performance testing and optimization
+7. Infrastructure as Code (IaC)
 
 ## Live Website
 🌐 [Live Portfolio](https://ogash3103.github.io/DevOps_Docker/)
@@ -116,9 +120,27 @@ MIT License
 
 - [Quick Start Guide](docs/QUICK_START.md) - Get started quickly
 - [Setup Guide](docs/SETUP.md) - Detailed setup instructions
+- [ArgoCD Guide](docs/ARGOCD_GUIDE.md) - GitOps with ArgoCD
 - [Monitoring Setup](docs/MONITORING_SETUP.md) - Configure analytics and uptime monitoring
 - [Performance Optimization](docs/PERFORMANCE_OPTIMIZATION.md) - Optimize website performance
 - [Submission Guide](docs/SUBMISSION_GUIDE.md) - Complete submission checklist
+
+## ArgoCD / Kubernetes
+
+This project includes full Kubernetes deployment with ArgoCD GitOps:
+
+```bash
+# Install ArgoCD
+./argocd/install.sh
+
+# Deploy application
+kubectl apply -f argocd/application.yaml
+
+# Access ArgoCD UI
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
+
+See [argocd/README.md](argocd/README.md) for detailed instructions.
 
 ## Report Templates
 
