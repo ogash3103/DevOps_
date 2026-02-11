@@ -1,0 +1,28 @@
+# DevOps Portfolio - Important Links
+
+## Repository and Deployment
+GitHub Repository: https://github.com/[username]/devops-portfolio-[yourname]
+Live Website: https://[username].github.io/devops-portfolio-[yourname]/
+Docker Hub: https://hub.docker.com/r/[username]/devops-portfolio
+
+## CI/CD Pipeline
+GitHub Actions: https://github.com/[username]/devops-portfolio-[yourname]/actions
+
+## Video Demonstrations
+Video 1 - Monitoring and Analytics (2-3 min): [YouTube/Drive Link]
+Video 2 - Docker Containerization (2-3 min): [YouTube/Drive Link]
+Video 3 - Complete DevOps Demo (5-7 min): [YouTube/Drive Link]
+
+## Monitoring Dashboards
+Google Analytics: [Dashboard Link if shareable]
+UptimeRobot: [Dashboard Link if shareable]
+
+## Performance Testing
+PageSpeed Insights: https://pagespeed.web.dev/
+GTmetrix: https://gtmetrix.com/
+
+## Notes
+- Replace [username] with your actual GitHub/Docker Hub username
+- Replace [yourname] with your actual name
+- Update video links after uploading to YouTube or Google Drive
+- Ensure all links are publicly accessible before submission
