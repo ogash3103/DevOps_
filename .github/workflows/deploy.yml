@@ -1,126 +1,161 @@
 name: CI/CD Pipeline
 
-# Trigger workflow on push to main branch
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   pull_request:
-    branches:
-      - main
+    branches: ["main", "development"]
 
-# Define jobs to run
+permissions:
+  contents: write   # gh-pages push uchun kerak bo'ladi
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  # Job 1: Code Quality and Linting
   lint:
-    name: Code Quality Check
+    name: Code Quality (HTML/CSS)
     runs-on: ubuntu-latest
-    
-    steps:
-      # Checkout the repository code
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      # Check HTML files for syntax errors
-      - name: Validate HTML
-        run: |
-          echo "Checking HTML files for syntax errors..."
-          # Install html5validator
-          pip install html5validator
-          # Validate all HTML files
-          html5validator --root src/ --also-check-css || echo "HTML validation completed"
-      
-      # Check for broken links (optional)
-      - name: Check for TODO comments
-        run: |
-          echo "Scanning for TODO comments..."
-          grep -r "TODO" src/ || echo "No TODO comments found"
 
-  # Job 2: Build and Test
-  build:
-    name: Build Application
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python (for html5validator)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install html5validator
+        run: |
+          python -m pip install --upgrade pip
+          pip install html5validator
+
+      - name: Validate HTML + CSS
+        run: |
+          echo "Validating HTML/CSS in src/ ..."
+          html5validator --root src/ --also-check-css
+
+      - name: Scan TODO comments (optional)
+        run: |
+          echo "Scanning for TODO..."
+          grep -R "TODO" src/ || echo "No TODO found ✅"
+
+  build_test:
+    name: Build & Basic Tests
     runs-on: ubuntu-latest
     needs: lint
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      # Simulate build process
-      - name: Build website
-        run: |
-          echo "Building website..."
-          ls -la src/
-          echo "Build completed successfully!"
-      
-      # Run basic tests
-      - name: Run tests
-        run: |
-          echo "Running tests..."
-          # Check if all required files exist
-          test -f src/index.html && echo "✓ index.html exists"
-          test -f src/skills.html && echo "✓ skills.html exists"
-          test -f src/blog.html && echo "✓ blog.html exists"
-          test -f src/contact.html && echo "✓ contact.html exists"
-          test -f src/css/style.css && echo "✓ style.css exists"
-          test -f src/js/main.js && echo "✓ main.js exists"
-          echo "All tests passed!"
 
-  # Job 3: Build Docker Image
-  docker:
-    name: Build Docker Image
-    runs-on: ubuntu-latest
-    needs: build
-    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      # Set up Docker Buildx
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build (static site)
+        run: |
+          echo "Static site - no build step required."
+          ls -la src/
+
+      - name: Run basic file tests
+        shell: bash
+        run: |
+          set -e
+
+          echo "Checking required pages..."
+          test -f src/index.html
+          test -f src/skills.html
+          test -f src/blog.html
+          test -f src/contact.html
+
+          echo "Checking assets (try common paths)..."
+          if [ -f src/assets/css/style.css ]; then
+            echo "✓ src/assets/css/style.css exists"
+          elif [ -f src/css/style.css ]; then
+            echo "✓ src/css/style.css exists"
+          else
+            echo "❌ style.css not found in src/assets/css or src/css"
+            exit 1
+          fi
+
+          if [ -f src/assets/js/main.js ]; then
+            echo "✓ src/assets/js/main.js exists"
+          elif [ -f src/js/main.js ]; then
+            echo "✓ src/js/main.js exists"
+          else
+            echo "❌ main.js not found in src/assets/js or src/js"
+            exit 1
+          fi
+
+          echo "✅ All basic tests passed!"
+
+  docker:
+    name: Docker Build & Smoke Test
+    runs-on: ubuntu-latest
+    needs: build_test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      
-      # Build Docker image
+        uses: docker/setup-buildx-action@v3
+
       - name: Build Docker image
         run: |
-          echo "Building Docker image..."
-          docker build -t devops-portfolio:latest .
-          echo "Docker image built successfully!"
-      
-      # Test Docker image
-      - name: Test Docker image
-        run: |
-          echo "Testing Docker image..."
-          docker run -d -p 8080:80 --name test-container devops-portfolio:latest
-          sleep 5
-          curl -f http://localhost:8080 || exit 1
-          docker stop test-container
-          docker rm test-container
-          echo "Docker image test passed!"
+          docker build -t devops-portfolio:ci .
 
-  # Job 4: Deploy to GitHub Pages
-  deploy:
+      - name: Smoke test container
+        run: |
+          docker run -d -p 8080:80 --name test-container devops-portfolio:ci
+          sleep 3
+          curl -f http://localhost:8080
+          docker logs test-container
+          docker rm -f test-container
+          echo "✅ Docker smoke test passed!"
+
+  # ixtiyoriy: DockerHub push (agar xohlasangiz)
+  dockerhub_push:
+    name: Push to DockerHub (optional)
+    runs-on: ubuntu-latest
+    needs: docker
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build & Push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/devops-portfolio:latest
+            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/devops-portfolio:${{ github.sha }}
+
+  deploy_pages:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-    needs: [build, docker]
-    # Only deploy on push to main branch
+    needs: [build_test, docker]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      # Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./src
           publish_branch: gh-pages
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-      
-      - name: Deployment complete
+
+      - name: Done
         run: |
-          echo "✅ Deployment completed successfully!"
-          echo "🌐 Website will be available at: https://<username>.github.io/<repository-name>/"
+          echo "✅ Deployed to GitHub Pages"
