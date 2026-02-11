@@ -1,30 +1,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-# Namespace for all resources
-namespace: default
+namespace: portfolio
 
-# Common labels applied to all resources
 commonLabels:
-  app: devops-portfolio
+  app: portfolio
   managed-by: argocd
 
-# Resources to include
 resources:
   - namespace.yaml
   - configmap.yaml
   - deployment.yaml
-  - hpa.yaml
+  - service.yaml
   - ingress.yaml
+  - hpa.yaml
 
-# Images to use
 images:
-  - name: ogabek0331/devops-portfolio
+  - name: ogash3103/devops-portfolio
     newTag: latest
-
-# ConfigMap generator (optional)
-configMapGenerator:
-  - name: app-config
-    literals:
-      - APP_VERSION=1.0.0
-      - ENVIRONMENT=production
