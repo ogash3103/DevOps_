@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/ogash3103/DevOps_Docker.git
+    repoURL: https://github.com/ogash3103/DevOps_.git
     targetRevision: main
     path: deploy/helm/portfolio
     helm:
