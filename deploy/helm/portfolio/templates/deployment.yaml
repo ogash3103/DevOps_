@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: portfolio
-  labels:
-    app: portfolio
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -20,21 +18,15 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 80
-          {{- if .Values.probes.liveness.enabled }}
           livenessProbe:
             httpGet:
-              path: {{ .Values.probes.liveness.path }}
+              path: /
               port: 80
-            initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
-            periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
-          {{- end }}
-          {{- if .Values.probes.readiness.enabled }}
+            initialDelaySeconds: 10
+            periodSeconds: 20
           readinessProbe:
             httpGet:
-              path: {{ .Values.probes.readiness.path }}
+              path: /
               port: 80
-            initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
-            periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
-          {{- end }}
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            initialDelaySeconds: 5
+            periodSeconds: 10
