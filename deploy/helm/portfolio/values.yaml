@@ -9,4 +9,11 @@ service:
   type: ClusterIP
   port: 80
 
+ingress:
+  enabled: false
+  className: nginx
+  host: portfolio.local
+  path: /
+
+
 resources: {}
