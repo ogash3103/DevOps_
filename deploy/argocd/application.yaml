@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: portfolio
+  name: devops-portfolio
   namespace: argocd
 spec:
   project: default
 
   source:
     repoURL: https://github.com/ogash3103/DevOps_.git
-    targetRevision: HEAD
+    targetRevision: main
     path: deploy/helm/portfolio
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: portfolio
+    namespace: devops-portfolio
 
   syncPolicy:
     automated:
@@ -21,10 +21,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-  
-  ignoreDifferences:
-    - group: ""
-      kind: Namespace
-      name: default
-      jsonPointers:
-        - /metadata
