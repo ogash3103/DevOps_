@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DevOps Blog - Articles about CI/CD, Docker, and DevOps practices">
+    <title>DevOps Portfolio - Blog</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h1>DevOps Blog</h1>
+            <p>Insights and Best Practices in Modern DevOps</p>
+        </div>
+
+        <div class="blog-post">
+            <h3>Understanding CI/CD Pipelines: A Beginner's Guide</h3>
+            <p class="date">Published: February 10, 2024</p>
+            <p>
+                Continuous Integration and Continuous Deployment (CI/CD) are fundamental practices in modern
+                software development. CI/CD pipelines automate the process of building, testing, and deploying
+                applications, reducing manual errors and accelerating delivery.
+            </p>
+            <p style="margin-top: 1rem;">
+                <strong>Key Benefits of CI/CD:</strong>
+            </p>
+            <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                <li><strong>Faster Time to Market:</strong> Automated pipelines reduce deployment time from days to
+                    minutes</li>
+                <li><strong>Improved Quality:</strong> Automated testing catches bugs early in the development cycle
+                </li>
+                <li><strong>Reduced Risk:</strong> Smaller, frequent deployments are easier to troubleshoot and rollback
+                </li>
+                <li><strong>Better Collaboration:</strong> Teams can work on features independently without conflicts
+                </li>
+            </ul>
+            <p style="margin-top: 1rem;">
+                In this portfolio project, I implemented a CI/CD pipeline using GitHub Actions that automatically
+                deploys the website whenever changes are pushed to the main branch. This ensures that the live
+                site is always up-to-date with the latest code.
+            </p>
+        </div>
+
+        <div class="blog-post">
+            <h3>Docker Containerization: Why It Matters for DevOps</h3>
+            <p class="date">Published: February 8, 2024</p>
+            <p>
+                Docker has revolutionized how we build, ship, and run applications. Containerization solves the
+                classic "it works on my machine" problem by packaging applications with all their dependencies
+                into portable containers.
+            </p>
+            <p style="margin-top: 1rem;">
+                <strong>Advantages of Docker:</strong>
+            </p>
+            <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                <li><strong>Consistency:</strong> Same environment across development, testing, and production</li>
+                <li><strong>Portability:</strong> Run anywhere - local machine, cloud, or on-premises</li>
+                <li><strong>Efficiency:</strong> Lightweight compared to virtual machines</li>
+                <li><strong>Scalability:</strong> Easy to scale applications horizontally</li>
+                <li><strong>Isolation:</strong> Applications run in isolated environments</li>
+            </ul>
+            <p style="margin-top: 1rem;">
+                This portfolio website is fully containerized using Docker. You can pull the image from Docker Hub
+                and run it locally with a single command. This demonstrates how containerization makes deployment
+                consistent and reproducible across different environments.
+            </p>
+        </div>
+
+        <div class="blog-post">
+            <h3>Monitoring and Observability: Essential DevOps Practices</h3>
+            <p class="date">Published: February 5, 2024</p>
+            <p>
+                Monitoring is crucial for maintaining reliable systems. Without proper monitoring, you're flying
+                blind - you won't know when things break or how users are experiencing your application.
+            </p>
+            <p style="margin-top: 1rem;">
+                <strong>Key Monitoring Metrics:</strong>
+            </p>
+            <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                <li><strong>Uptime:</strong> Is your service available and responding?</li>
+                <li><strong>Performance:</strong> How fast are pages loading?</li>
+                <li><strong>Traffic:</strong> How many users are visiting?</li>
+                <li><strong>Errors:</strong> What's breaking and how often?</li>
+                <li><strong>User Behavior:</strong> How are users interacting with your site?</li>
+            </ul>
+            <p style="margin-top: 1rem;">
+                For this portfolio, I implemented multiple monitoring solutions:
+            </p>
+            <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                <li>Google Analytics for user behavior tracking</li>
+                <li>UptimeRobot for availability monitoring</li>
+                <li>Custom error logging for debugging</li>
+                <li>Performance monitoring with Lighthouse</li>
+            </ul>
+            <p style="margin-top: 1rem;">
+                These tools provide real-time insights into how the website is performing and help identify
+                issues before they impact users. Monitoring isn't just about collecting data - it's about
+                using that data to make informed decisions and continuously improve your systems.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DevOps Portfolio. Built with modern DevOps practices.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
