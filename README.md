@@ -73,6 +73,8 @@ DevOps_/
 ---
 
 ## 🐳 Docker Implementation
+<img width="3024" height="1964" alt="image" src="https://github.com/user-attachments/assets/ed451694-bca0-4f43-a3db-805a594d55ad" />
+
 
 ### Dockerfile Configuration
 
@@ -147,6 +149,7 @@ open http://localhost:3000
 ---
 
 ## ☸️ Kubernetes Deployment with Helm
+<img width="1678" height="568" alt="image" src="https://github.com/user-attachments/assets/072d80c5-09dd-44cf-be77-8e042b4e8f24" />
 
 ### Helm Chart Structure
 
@@ -253,6 +256,11 @@ helm uninstall portfolio -n devops-portfolio
 
 ## 🔄 GitOps with ArgoCD
 
+ERROR
+<img width="3024" height="1964" alt="image" src="https://github.com/user-attachments/assets/db75bd84-182b-4d8e-8d70-805b2a386edb" />
+
+
+
 ### ArgoCD Installation
 
 ```bash
@@ -338,6 +346,7 @@ Resources:
   - Service:        portfolio          ✅ Healthy
   - Deployment:     portfolio          ✅ Healthy
 ```
+<img width="3024" height="1964" alt="image" src="https://github.com/user-attachments/assets/22b4c1d2-06f7-4aaf-a0fa-39a1f938ea28" />
 
 ---
 
@@ -533,7 +542,7 @@ argocd app delete devops-portfolio
 **GitHub:** https://github.com/ogash3103  
 **Docker Hub:** https://hub.docker.com/u/ogabek0331  
 **LinkedIn:** https://linkedin.com/in/ogabek
-
+web-site netlify: https://devops-portfolio-ogash.netlify.app/
 ---
 
 ## 📄 License
