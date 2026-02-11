@@ -1,21 +1,19 @@
-{{- if .Values.ingress.enabled }}
+{{- if and (.Values.ingress) (.Values.ingress.enabled) }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: portfolio
-  labels:
-    app: portfolio
 spec:
-  ingressClassName: {{ .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className | default "nginx" }}
   rules:
-    - host: {{ .Values.ingress.host }}
+    - host: {{ .Values.ingress.host | default "portfolio.local" }}
       http:
         paths:
-          - path: {{ .Values.ingress.path }}
-            pathType: {{ .Values.ingress.pathType }}
+          - path: {{ .Values.ingress.path | default "/" }}
+            pathType: Prefix
             backend:
               service:
                 name: portfolio
                 port:
-                  number: {{ .Values.service.port }}
+                  number: 80
 {{- end }}
