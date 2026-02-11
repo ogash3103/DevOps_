@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: portfolio
+  name: devops-portfolio
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -9,13 +9,13 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/ogash3103/DevOps_.git
+    repoURL: https://github.com/ogash3103/DevOps_Docker.git
     targetRevision: main
     path: k8s
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: portfolio
+    namespace: default
 
   syncPolicy:
     automated:
@@ -26,7 +26,6 @@ spec:
       - CreateNamespace=true
       - PrunePropagationPolicy=foreground
       - PruneLast=true
-      - ApplyOutOfSyncOnly=true
     retry:
       limit: 5
       backoff:
