@@ -1,9 +1,10 @@
 replicaCount: 1
 
 image:
-  repository: docker.io/ogash3103/devops-portfolio
-  tag: "latest"
+  repository: ogabek0331/devops-portfolio
+  tag: latest
   pullPolicy: Always
+
 
 service:
   type: ClusterIP
