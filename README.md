@@ -48,12 +48,15 @@ devops-portfolio/
 ## Docker Hub
 🐳 [Docker Hub Repository - Will be updated after containerization]
 
-## Getting Started
+## Quick Start
+
+**New to this project?** Check out the [Quick Start Guide](docs/QUICK_START.md) for step-by-step instructions!
 
 ### Prerequisites
 - Git
-- Node.js (optional, for development server)
+- GitHub account
 - Docker (for containerization)
+- Docker Hub account (for image hosting)
 
 ### Local Development
 ```bash
@@ -63,7 +66,12 @@ git clone https://github.com/[username]/devops-portfolio-[yourname].git
 # Navigate to project directory
 cd devops-portfolio-[yourname]
 
-# Open with a local server or simply open index.html in browser
+# Option 1: Open directly in browser
+open src/index.html
+
+# Option 2: Use Python HTTP server
+cd src && python3 -m http.server 8000
+# Visit http://localhost:8000
 ```
 
 ### Docker Deployment
@@ -72,7 +80,10 @@ cd devops-portfolio-[yourname]
 docker build -t devops-portfolio .
 
 # Run container
-docker run -p 8080:80 devops-portfolio
+docker run -d -p 8080:80 --name devops-portfolio devops-portfolio
+
+# Or use Docker Compose
+docker-compose up -d
 ```
 
 ## Branching Strategy
@@ -101,7 +112,25 @@ Automated deployment triggered on push to main branch:
 ## License
 MIT License
 
+## Documentation
+
+- [Quick Start Guide](docs/QUICK_START.md) - Get started quickly
+- [Setup Guide](docs/SETUP.md) - Detailed setup instructions
+- [Monitoring Setup](docs/MONITORING_SETUP.md) - Configure analytics and uptime monitoring
+- [Performance Optimization](docs/PERFORMANCE_OPTIMIZATION.md) - Optimize website performance
+- [Submission Guide](docs/SUBMISSION_GUIDE.md) - Complete submission checklist
+
+## Report Templates
+
+All report templates are available in the `docs/` folder:
+- Task 1: Repository Setup and Version Control
+- Task 2: CI/CD Pipeline Implementation
+- Task 3: Monitoring and Analytics
+- Task 4: Containerization and Environment Management
+- Task 5: Performance Testing and Optimization (Final Report)
+
 ## Contact
-[Your Email]
-[Your LinkedIn]
-[Your GitHub]
+- Email: [Your Email]
+- LinkedIn: [Your LinkedIn]
+- GitHub: [Your GitHub]
+- Docker Hub: [Your Docker Hub]
