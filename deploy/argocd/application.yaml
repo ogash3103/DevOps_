@@ -8,11 +8,8 @@ spec:
 
   source:
     repoURL: https://github.com/ogash3103/DevOps_.git
-    targetRevision: main
+    targetRevision: HEAD
     path: deploy/helm/portfolio
-    helm:
-      valueFiles:
-        - values.yaml
 
   destination:
     server: https://kubernetes.default.svc
