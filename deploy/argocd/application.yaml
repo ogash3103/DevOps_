@@ -21,3 +21,10 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+  
+  ignoreDifferences:
+    - group: ""
+      kind: Namespace
+      name: default
+      jsonPointers:
+        - /metadata
